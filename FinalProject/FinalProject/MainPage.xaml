@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FinalProject"
+             x:Class="FinalProject.MainPage">
+
+    <ContentPage.Resources>
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="TextColor" Value="#f5f5f5" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+        </Style>
+        <Style x:Key="EntryStyle" TargetType="Entry">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="TextColor" Value="#f5f5f5" />
+            <Setter Property="BackgroundColor" Value="#333333" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="HeightRequest" Value="40" />
+        </Style>
+        <Style x:Key="PickerStyle" TargetType="Picker">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="TextColor" Value="#f5f5f5" />
+            <Setter Property="BackgroundColor" Value="#333333" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="HeightRequest" Value="40" />
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="BackgroundColor" Value="#007bff" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="HeightRequest" Value="40" />
+        </Style>
+        <Style x:Key="StackLayoutStyle" TargetType="StackLayout">
+            <Setter Property="Spacing" Value="10" />
+            <Setter Property="Padding" Value="10" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Style="{StaticResource StackLayoutStyle}">
+            <Label Text="Reference Number:" Style="{StaticResource LabelStyle}" />
+            <Entry x:Name="referenceNumberEntry" Placeholder="Enter Reference Number" Style="{StaticResource EntryStyle}" />
+
+            <Label Text="Name:" Style="{StaticResource LabelStyle}" />
+            <Entry x:Name="nameEntry" Placeholder="Enter Name" Style="{StaticResource EntryStyle}" />
+
+            <Label Text="Select a Date:" Style="{StaticResource LabelStyle}" />
+            <DatePicker x:Name="datePicker" Format="MM/dd/yyyy" DateSelected="OnDateSelected" Style="{StaticResource EntryStyle}" />
+            <Label x:Name="selectedDateLabel" IsVisible="False" Text="Selected Date: " Style="{StaticResource LabelStyle}" />
+
+            <Label Text="Type:" Style="{StaticResource LabelStyle}" />
+            <Picker x:Name="typePicker" Style="{StaticResource PickerStyle}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Personal Loan</x:String>
+                        <x:String>Home Loan</x:String>
+                        <x:String>Auto Loan</x:String>
+                        <x:String>Student Loan</x:String>
+                        <x:String>Business Loan</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Label Text="Principal Amount:" Style="{StaticResource LabelStyle}" />
+            <Entry x:Name="principalAmountEntry" Placeholder="Enter Principal Amount" Keyboard="Numeric" Style="{StaticResource EntryStyle}" />
+
+            <Label Text="Terms:" Style="{StaticResource LabelStyle}" />
+            <Entry x:Name="termsEntry" Placeholder="Enter Terms" Keyboard="Numeric" Style="{StaticResource EntryStyle}" />
+
+            <Label Text="Balance:" Style="{StaticResource LabelStyle}" />
+            <Entry x:Name="balanceEntry" Placeholder="Enter Balance" Keyboard="Numeric" Style="{StaticResource EntryStyle}" />
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="10">
+                <Button Text="Add" Clicked="AddButtonClicked" Style="{StaticResource ButtonStyle}" />
+                <Button Text="Search" Clicked="SearchButtonClicked" Style="{StaticResource ButtonStyle}" />
+                <Button Text="Update" Clicked="UpdateButtonClicked" Style="{StaticResource ButtonStyle}" />
+                <Button Text="Delete" Clicked="DeleteButtonClicked" Style="{StaticResource ButtonStyle}" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

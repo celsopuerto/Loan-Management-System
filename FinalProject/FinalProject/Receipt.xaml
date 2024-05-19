@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FinalProject.Receipt">
+    
+    <ContentPage.Resources>
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="TextColor" Value="#f5f5f5" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+        </Style>
+        <Style x:Key="EntryStyle" TargetType="Entry">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="TextColor" Value="#f5f5f5" />
+            <Setter Property="BackgroundColor" Value="#333333" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="HeightRequest" Value="40" />
+        </Style>
+        <Style x:Key="PickerStyle" TargetType="Picker">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="TextColor" Value="#f5f5f5" />
+            <Setter Property="BackgroundColor" Value="#333333" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="HeightRequest" Value="40" />
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="BackgroundColor" Value="#007bff" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="HeightRequest" Value="40" />
+        </Style>
+        <Style x:Key="StackLayoutStyle" TargetType="StackLayout">
+            <Setter Property="Spacing" Value="10" />
+            <Setter Property="Padding" Value="10" />
+        </Style>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>
