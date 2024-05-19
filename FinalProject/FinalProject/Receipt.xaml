@@ -42,11 +42,60 @@
     </ContentPage.Resources>
     
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Reference Number:" Style="{StaticResource LabelStyle}" />
+                <Label x:Name="referenceNumberEntry" Style="{StaticResource LabelStyle}" />
+
+                <Label Text="Name:" Style="{StaticResource LabelStyle}" />
+                <Label x:Name="nameEntry" Style="{StaticResource LabelStyle}" />
+
+                <Label Text="Select a Date:" Style="{StaticResource LabelStyle}" />
+                <Label x:Name="dateEntry" Style="{StaticResource LabelStyle}" />
+
+                <Label Text="Type:" Style="{StaticResource LabelStyle}" />
+                <Label x:Name="typeEntry" Style="{StaticResource LabelStyle}" />
+
+                <Label Text="Principal Amount:" Style="{StaticResource LabelStyle}" />
+                <Label x:Name="principalAmountEntry" Style="{StaticResource LabelStyle}" />
+
+                <Label Text="Terms:" Style="{StaticResource LabelStyle}" />
+                <Label x:Name="termsEntry" Style="{StaticResource LabelStyle}" />
+
+                <Label Text="Balance:" Style="{StaticResource LabelStyle}" />
+                <Label x:Name="balanceEntry" Style="{StaticResource LabelStyle}" />
+
+                <Label Text="Service Fee:" Style="{StaticResource LabelStyle}" />
+                <Label x:Name="serviceFeeEntry" Style="{StaticResource LabelStyle}" />
+
+                <Label Text="Filing Fee:" Style="{StaticResource LabelStyle}" />
+                <Label x:Name="filingFeeEntry" Style="{StaticResource LabelStyle}" />
+
+                <Label Text="Insurance Fee:" Style="{StaticResource LabelStyle}" />
+                <Label x:Name="insuranceFeeEntry" Style="{StaticResource LabelStyle}" />
+
+                <Label Text="Capital Retention:" Style="{StaticResource LabelStyle}" />
+                <Label x:Name="captialRetentionEntry" Style="{StaticResource LabelStyle}" />
+
+                <Label Text="Savings Retention:" Style="{StaticResource LabelStyle}" />
+                <Label x:Name="savingRetentionEntry" Style="{StaticResource LabelStyle}" />
+
+                <Label Text="Monthly Amortization:" Style="{StaticResource LabelStyle}" />
+                <Label x:Name="monthlyAmortizationEntry" Style="{StaticResource LabelStyle}" />
+
+                <Label Text="Pricipal Monthly Pay:" Style="{StaticResource LabelStyle}" />
+                <Label x:Name="principalMonthlyPayEntry" Style="{StaticResource LabelStyle}" />
+
+                <Label Text="Interest Monthly Pay:" Style="{StaticResource LabelStyle}" />
+                <Label x:Name="interestMonthlyPayEntry" Style="{StaticResource LabelStyle}" />
+
+                <Label Text="Net:" Style="{StaticResource LabelStyle}" />
+                <Label x:Name="netEntry" Style="{StaticResource LabelStyle}" />
+
+                <Label Text="Total Interest Earned:" Style="{StaticResource LabelStyle}" />
+                <Label x:Name="totalInterestEarnedEntry" Style="{StaticResource LabelStyle}" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
     
 </ContentPage>

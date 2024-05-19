@@ -53,13 +53,15 @@ namespace FinalProject
 
                     // CALCULATIONS
 
-                    if(principalAmount * 0.015 >= 1500)
+                    if (principalAmount * 0.015 >= 1500)
                     {
                         serviceFee = 1500;
+                        filingFee = 1500;
                     }
                     else
                     {
-                        filingFee = 1500;
+                        serviceFee = principalAmount * 0.015;
+                        filingFee = principalAmount * 0.015;
                     }
 
                     insuranceFee = principalAmount * 0.015 * terms / 12;
@@ -68,16 +70,16 @@ namespace FinalProject
 
                     savingRetention = principalAmount * 0.01;
 
-                    monthlyAmortization = principalAmount * 0.015; //TEMP
+                    monthlyAmortization = principalAmount * 0.015 * Math.Pow(1 + 0.015, terms); //TEMP
 
                     principalAmountMonthlyPay = principalAmount / terms;
 
                     interestMonthlyPay = monthlyAmortization - principalAmountMonthlyPay;
 
-                    net = principalAmount - (balance + serviceFee + filingFee 
+                    net = principalAmount - (balance + serviceFee + filingFee
                         + insuranceFee + capitalRetention + savingRetention);
 
-                    totalInterestEarned = interestMonthlyPay - terms;
+                    totalInterestEarned = interestMonthlyPay * terms;
 
                     //DATABASE ACTION
 
@@ -123,8 +125,7 @@ namespace FinalProject
                 await DisplayAlert("Admin", "Please fillup the form", "OK");
             }
         }
-
-            public async void UpdateButtonClicked(object sender, EventArgs e)
+        public async void UpdateButtonClicked(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(referenceNumberEntry.Text) && !string.IsNullOrWhiteSpace(nameEntry.Text) &&
                 !string.IsNullOrWhiteSpace(selectedDateLabel.Text) && !string.IsNullOrWhiteSpace(typePicker.SelectedItem.ToString()) &&
@@ -148,10 +149,12 @@ namespace FinalProject
                     if (principalAmount * 0.015 >= 1500)
                     {
                         serviceFee = 1500;
+                        filingFee = 1500;
                     }
                     else
                     {
-                        filingFee = 1500;
+                        serviceFee = principalAmount * 0.015;
+                        filingFee = principalAmount * 0.015;
                     }
 
                     insuranceFee = principalAmount * 0.015 * terms / 12;
@@ -160,7 +163,7 @@ namespace FinalProject
 
                     savingRetention = principalAmount * 0.01;
 
-                    monthlyAmortization = principalAmount * 0.015; //TEMP
+                    monthlyAmortization = principalAmount * 0.015 * Math.Pow(1 + 0.015, terms); //TEMP
 
                     principalAmountMonthlyPay = principalAmount / terms;
 
@@ -169,7 +172,7 @@ namespace FinalProject
                     net = principalAmount - (balance + serviceFee + filingFee
                         + insuranceFee + capitalRetention + savingRetention);
 
-                    totalInterestEarned = interestMonthlyPay - terms;
+                    totalInterestEarned = interestMonthlyPay * terms;
 
                     //DATABASE ACTION
 
@@ -225,16 +228,11 @@ namespace FinalProject
                 {
                     ResetForm();
 
-                    string message = "---- Receipt ----" + "\nReference Number: " + table.ReferenceNumber + "\nName: " + table.Name
-                        + "\nDate: " + table.Date + "\nType: " + table.Type + "\nPrincipal Amount: " + table.PrincipalAmount
-                        + "\nTerms: " + table.Terms + "\nBalance: " + table.Balance + "\nService Fee: " + table.ServiceFee
-                        + "\nFiling Fee: " + table.FilingFee + "\nInsurance Fee: " + table.InsuranceFee
-                        + "\nCapital Retention: " + table.CapitalRetention + "\nSaving Retention: " + table.SavingsRetention
-                        + "\nMonthly Amortization: " + table.MonthlyAmortization + "\nPrincipal (Monthly Pay): " + table.PrincipalMonthlyPay
-                        + "\nInterest (Monthly Pay): " + table.InterestMonthlyPay + "\nNet: " + table.Net
-                        + "\nTotal Interest Earned: " + table.TotalInterestEarned;
+                    string status = "search";
 
-                    await DisplayAlert("Searched Info", message, "OK");
+                    Application.Current.Properties["status"] = status;
+                    Application.Current.Properties["data"] = table.ReferenceNumber.ToString();
+                    await Navigation.PushAsync(new Receipt());
                 }
                 else
                 {
@@ -260,14 +258,21 @@ namespace FinalProject
 
                     ResetForm();
 
-                    string status = "delete";
-
                     if (electricity != null)
                     {
-                        Application.Current.Properties["status"] = status;
-                        Application.Current.Properties["data"] = electricity.ReferenceNumber.ToString();
+                        var delete = await App.db.SearchAsync(meter);
 
-                        await Navigation.PushAsync(new Receipt());
+                        string message = "---- Deleted Data ----" + "\nReference Number: " + table.ReferenceNumber + "\nName: " + table.Name
+                            + "\nDate: " + table.Date + "\nType: " + table.Type + "\nPrincipal Amount: " + table.PrincipalAmount
+                            + "\nTerms: " + table.Terms + "\nBalance: " + table.Balance + "\nService Fee: " + table.ServiceFee
+                            + "\nFiling Fee: " + table.FilingFee + "\nInsurance Fee: " + table.InsuranceFee
+                            + "\nCapital Retention: " + table.CapitalRetention + "\nSaving Retention: " + table.SavingsRetention
+                            + "\nMonthly Amortization: " + table.MonthlyAmortization + "\nPrincipal (Monthly Pay): " + table.PrincipalMonthlyPay
+                            + "\nInterest (Monthly Pay): " + table.InterestMonthlyPay + "\nNet: " + table.Net
+                            + "\nTotal Interest Earned: " + table.TotalInterestEarned;
+
+                        await DisplayAlert("Delete Success", message , "OK");
+                        await App.db.DeleteAsync(delete);
                     }
                     else
                     {
